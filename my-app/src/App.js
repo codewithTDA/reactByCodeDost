@@ -31,8 +31,8 @@ function App() {
 
   return (
     <div className="App" onClick={()=>console.log('App')}>
-       <AddVideo addVideos={addVideos} updateVideo={updateVideo} editableVideo={editableVideo}></AddVideo>
-       <VideoList deleteVideo={deleteVideo} editVideo={editVideo}  videos={videos}></VideoList>
+       {/* {/* <AddVideo addVideos={addVideos} updateVideo={updateVideo} editableVideo={editableVideo}></AddVideo> */}
+       <VideoList deleteVideo={deleteVideo} editVideo={editVideo}  videos={videos}></VideoList> */}
 
 
     </div>
