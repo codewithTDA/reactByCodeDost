@@ -1,22 +1,21 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function Counter(){
-    console.log('render Counter')
     const [number, setNumber] = useState(0);
-
+let num = useRef(0);
     function handleClick(e){
         e.stopPropagation();
        
-    //    setNumber(number=>number+1);
-    //    setNumber(number=>number+1);
-    //    setNumber(number=>number+1);
-    setNumber(number+1)
-    setNumber(number+1)
-    setNumber(number+1)
-        
-        console.log(number)
+       setNumber(number=>number+1);
+       setNumber(number=>number+1);
+       setNumber(number=>number+1);
+    // setNumber(number+1)
+    // setNumber(number+1)
+    // setNumber(number+1)
+        num.current++
+        // console.log(number)
+        // console.log(num.);
     }
-
     return(
         <>
         <h1 style={{color:'red'}}>{number}</h1>

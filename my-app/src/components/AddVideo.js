@@ -1,6 +1,7 @@
 import ThemeContext from '../context/ThemeContext';
+import useVideoDispatch from '../hooks/VideoDispatch';
 import './AddVideo.css';
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 const initialState = {
     time: '1 month ago',
     channel: 'Coder Dost',
@@ -9,7 +10,9 @@ const initialState = {
     views:''
   }
 
-function AddVideo({dispatch,editableVideo}) {
+function AddVideo({editableVideo}) {
+  const inputRef = useRef(null);
+  const dispatch = useVideoDispatch();
   const [video, setVideo] = useState(initialState);
   const theme = useContext(ThemeContext)
 
@@ -34,12 +37,22 @@ function AddVideo({dispatch,editableVideo}) {
     if(editableVideo){
       setVideo(editableVideo)
     }
+    // inputRef.current.value= "demo"
+    // inputRef.current.focus()
+    "TypeHEre".split('').forEach((char,i)=>{
+      setTimeout(()=>{
+        console.log(char);
+        inputRef.current.placeholder= inputRef.current.placeholder + char
+      },200*i)
+    })
   },[editableVideo])
+  console.log(inputRef.current);
 
   return (
     <div  className='addVideoContainer' >
             <form className={theme} >
       <input
+        ref ={inputRef}
         type="text"
         name="title"
         onChange={handleChange}

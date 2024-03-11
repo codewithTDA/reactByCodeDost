@@ -1,10 +1,15 @@
 import Video from "./Video";
 import PlayButton from "./PlayButton";
+import useVideos from "../hooks/Videos";
+import {  useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
-function VideoList({videos,dispatch,editVideo}){
-
+function VideoList({editVideo}){
+   const videos = useVideos()
+   const theme = useContext(ThemeContext)
     return(
-        <>
+      <div className={`VideoListContainer ${theme}`} >
+
         {videos.map((video) => (
             <Video
               key={video.id}
@@ -15,7 +20,6 @@ function VideoList({videos,dispatch,editVideo}){
               verified={video.verified}
               id={video.id}
               editVideo={editVideo}
-              dispatch={dispatch}
             >
               <PlayButton
                 onPlay={() => console.log('Playing..',video.title)}
@@ -25,7 +29,7 @@ function VideoList({videos,dispatch,editVideo}){
               </PlayButton>
             </Video>
           ))}
-          </>
+          </div>
     )
 }
 

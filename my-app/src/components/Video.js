@@ -3,7 +3,7 @@ import './Video.css';
 import ThemeContext from '../context/ThemeContext';
 
 function Video({title,id,channel="Coder Dost",views,time,verified,children,dispatch,editVideo}) {
-  console.log('render Video')
+  // console.log('render Video')
 const theme = useContext(ThemeContext)
   
   return (
