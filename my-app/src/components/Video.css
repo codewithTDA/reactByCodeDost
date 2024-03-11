@@ -1,7 +1,3 @@
-.dark{
-    background-color: gray;
-    color:white;
-}
 
 .container{
     width:15em;
@@ -14,15 +10,21 @@
   .title{
     font-weight: bold;
     margin-bottom: 1em;
-    color:rgb(104, 86, 86)
 
   }
   .channel, .views{
     font-size: small;
-    color:#ccc;
     margin-bottom: 0.2em;
   }
   
   .views span{
     padding: 0 0.5em;
+  }
+  .container .darkMode{
+    background-color: black;
+    /* height: 100vh; */
+  
+  }
+  .container.lightMode{
+    background-color: #ccc;
   }

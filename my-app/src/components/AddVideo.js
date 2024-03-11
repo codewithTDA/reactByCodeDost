@@ -1,6 +1,6 @@
+import ThemeContext from '../context/ThemeContext';
 import './AddVideo.css';
-import {useEffect, useState} from 'react';
-
+import {useContext, useEffect, useState} from 'react';
 const initialState = {
     time: '1 month ago',
     channel: 'Coder Dost',
@@ -11,6 +11,7 @@ const initialState = {
 
 function AddVideo({dispatch,editableVideo}) {
   const [video, setVideo] = useState(initialState);
+  const theme = useContext(ThemeContext)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +37,8 @@ function AddVideo({dispatch,editableVideo}) {
   },[editableVideo])
 
   return (
-    <form>
+    <div  className='addVideoContainer' >
+            <form className={theme} >
       <input
         type="text"
         name="title"
@@ -57,6 +59,7 @@ function AddVideo({dispatch,editableVideo}) {
         {editableVideo?'Edit':'Add'} Video
       </button>
     </form>
+    </div>
   );
 }
 

@@ -1,12 +1,12 @@
-import { useReducer, useState } from 'react';
+import {  useContext, useReducer, useState } from 'react';
 import './App.css';
 import AddVideo from './components/AddVideo';
 import videoDB from './data/data';
 import VideoList from './components/VideoList';
+import ThemeContext from './context/ThemeContext';
 function App() {
-  console.log('render App')
+  const [mode,setMode] = useState('lightMode')
   const [editableVideo,setEditableVideo] = useState(null);
-
   function videoReducer(videos,action){
     switch(action.type){
       case 'ADD':
@@ -25,24 +25,20 @@ function App() {
       default:
         return videos  
     }
-
   }
-
   const [videos,dispatch] = useReducer(videoReducer,videoDB)
-
-
+  const themeContext  = useContext(ThemeContext);
   function editVideo(id){
     setEditableVideo(videos.find(video=>video.id===id))
   }
-
   return (
-    <div className="App" onClick={()=>console.log('App')}>
+   <ThemeContext.Provider value={mode} > 
+     <div className={`App ${mode}`} onClick={()=>console.log('App')}>
+   <button onClick={()=>setMode(mode==='darkMode'?'lightMode':'darkMode')} >d</button>
        <AddVideo dispatch={dispatch} editableVideo={editableVideo}></AddVideo>
        <VideoList dispatch={dispatch} editVideo={editVideo}  videos={videos}></VideoList>
-
-
     </div>
+   </ThemeContext.Provider>
   );
 }
-
 export default App;

@@ -2,4 +2,30 @@ input{
     display: block;
     padding: 1em;
     margin-bottom:10px;
+    border-radius: 5px;
+}
+.darkMode{
+    background-color: black;
+    
+}
+.lightMode{
+    background-color: white;
+    
+}
+.addVideoContainer{
+    width: 100%;
+    padding: 10px;
+    height: 300px;   display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+form{
+    width: max-content;
+    border: 2px solid blueviolet;
+    border-radius: 4px;
+    box-shadow: 3px 4px 10px white;
+    padding: 10px;
+ 
+    /* margin: 20px; */
 }
