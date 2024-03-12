@@ -1,7 +1,7 @@
-import { useReducer, useState } from 'react';
+import { useCallback, useReducer, useState } from 'react';
 import './App.css';
 import AddVideo from './components/AddVideo';
-import videoDB from './data/data';
+// import videoDB from './data/data';
 import VideoList from './components/VideoList';
 import ThemeContext from './context/ThemeContext';
 import VideosContext from './context/VideosContext';
@@ -16,6 +16,9 @@ function App() {
     switch (action.type) {
       case 'ADD':
         return [...videos, { ...action.payload, id: videos.length + 1 }];
+      case 'LOAD':
+        return action.payload 
+
       case 'DELETE':
         return videos.filter((video) => video.id !== action.payload);
       case 'UPDATE':
@@ -28,11 +31,11 @@ function App() {
         return videos;
     }
   }
-  const [videos, dispatch] = useReducer(videoReducer, videoDB);
+  const [videos, dispatch] = useReducer(videoReducer, []);
 
-  function editVideo(id) {
-    setEditableVideo(videos.find((video) => video.id === id));
-  }
+const editVideo =  useCallback(  function editVideo(id) {
+  setEditableVideo(videos.find((video) => video.id === id));
+},[videos])
 
   return (
     <ThemeContext.Provider value={mode}>

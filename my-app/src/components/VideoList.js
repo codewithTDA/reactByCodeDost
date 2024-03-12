@@ -1,12 +1,35 @@
 import Video from "./Video";
 import PlayButton from "./PlayButton";
 import useVideos from "../hooks/Videos";
-import {  useContext } from "react";
+import {  useCallback, useContext ,useEffect,useMemo,useState} from "react";
 import ThemeContext from "../context/ThemeContext";
+import axios from 'axios';
+import useVideoDispatch from "../hooks/VideoDispatch";
 
 function VideoList({editVideo}){
    const videos = useVideos()
    const theme = useContext(ThemeContext)
+   const dispatch = useVideoDispatch();
+   const url = 'http://localhost:4500/'
+  //  const [videos,setVideo] = useState([]);
+  const play= useCallback(() => console.log('Playing..'),[])
+  const pause= useCallback(() => console.log('Paused..'),[])
+   useEffect(()=>{
+    async function handleClick(){
+      const res = await axios.get(url);
+      console.log('getVideos',res.data);
+      dispatch({type:"LOAD",payload:res.data});
+     }
+         handleClick()
+   },[])
+   const memoButton = useMemo(()=>{return <PlayButton
+    onPlay={play}
+    onPause={pause}
+  >
+    {/* {video.title} */}
+    Play
+  </PlayButton>},[pause,play])
+   
     return(
       <div className={`VideoListContainer ${theme}`} >
 
@@ -21,14 +44,11 @@ function VideoList({editVideo}){
               id={video.id}
               editVideo={editVideo}
             >
-              <PlayButton
-                onPlay={() => console.log('Playing..',video.title)}
-                onPause={() => console.log('Paused..',video.title)}
-              >
-                {video.title}
-              </PlayButton>
+              {memoButton}
             </Video>
-          ))}
+            
+            ))}
+            {/* <button onClick={handleClick}>Get Videos</button> */}
           </div>
     )
 }

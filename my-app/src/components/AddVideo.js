@@ -37,16 +37,17 @@ function AddVideo({editableVideo}) {
     if(editableVideo){
       setVideo(editableVideo)
     }
+    
+  inputRef.current.focus()
     // inputRef.current.value= "demo"
-    // inputRef.current.focus()
     "TypeHEre".split('').forEach((char,i)=>{
       setTimeout(()=>{
-        console.log(char);
+        // console.log(char);
         inputRef.current.placeholder= inputRef.current.placeholder + char
       },200*i)
     })
   },[editableVideo])
-  console.log(inputRef.current);
+  // console.log(inputRef.current);
 
   return (
     <div  className='addVideoContainer' >

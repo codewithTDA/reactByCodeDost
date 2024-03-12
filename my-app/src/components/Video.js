@@ -1,12 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useEffect,memo } from 'react';
 import './Video.css';
 import ThemeContext from '../context/ThemeContext';
+import useVideoDispatch from '../hooks/VideoDispatch';
 
-function Video({title,id,channel="Coder Dost",views,time,verified,children,dispatch,editVideo}) {
-  // console.log('render Video')
+const Video = memo(function Video({title,id,channel="Coder Dost",views,time,verified,children,editVideo}) {
+  console.log('render Video')
 const theme = useContext(ThemeContext)
+const dispatch = useVideoDispatch();
+// console.log(dispatch);
+// useEffect(()=>{
+//   const idx = setInterval(()=>{
+// console.log('video playing ',id);
+//   },7000)
+//   return ()=>{
+//     clearInterval(idx)
+//   }
+// },[id])
   
-  return (
+  return (                  
       <>
       <div className={`container ${theme}`}>
       <button className='close' onClick={()=>dispatch({type:'DELETE',payload:id})}>X</button>  
@@ -26,5 +37,5 @@ const theme = useContext(ThemeContext)
       </>
   );
 }
-
+)
 export default Video;
